@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import EldorYulchiyevImage from '../../../../public/HomeImg/Eldor Yulchiyev 640px.jpg'
 import './HomeStyle.css'
 import EldorbekImg from '../../../../public/HomeImg/Eldorbek Yulchiyev.jpg'
 
