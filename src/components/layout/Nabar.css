@@ -321,7 +321,7 @@ nav .nav-burger {
     cursor: pointer;
   }
 }
-@media (max-width: 320px) {
+@media (max-width: 424px) {
   nav {
     display: flex;
     justify-content: space-around;
