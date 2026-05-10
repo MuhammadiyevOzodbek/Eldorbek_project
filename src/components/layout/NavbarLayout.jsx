@@ -4,16 +4,20 @@ import "./Nabar.css"
 import SunSvg from "../../../public/LayoutSvg/sun-svgrepo-com.svg"
 import MoonSvg from "../../../public/LayoutSvg/moon-svgrepo-com.svg"
 import { Link, Outlet } from "react-router-dom"
+import Burger from '../../../public/LayoutSvg/burger-bar.png'
 
 function NavbarLayout() {
     const [dark, setDark] = useState(false)
+    const [open, setOpen] = useState(false)
+
     return (
      <div className={dark ? "dark" : ""}>
         <nav>
             <div className="nav-div1">
-                <img src={BookSvg} alt="Book" />
+                <img className="nav-logo" src={BookSvg} alt="Book" />
                 <h1>Meros<span>Blog</span></h1>
             </div>
+            <img className="nav-burger" onClick={() => setOpen(!open)} src={Burger} alt="Burger" />
             <ul>
                 <Link to={'/'}>
                 <li> Home<span></span></li>
