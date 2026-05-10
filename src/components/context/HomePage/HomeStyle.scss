@@ -7,8 +7,8 @@
     align-items: center;
 
     .profile-img {
-        width: 470px;
-        height: 470px;
+        width: 450px;
+        height: 450px;
         border-radius: 100%;
         object-fit: cover;
         z-index: 5;
@@ -113,5 +113,26 @@
 @keyframes blink {
     50% {
         border-color: transparent;
+    }
+}
+.home-cv{
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    margin-top: 10px;
+    button{
+        width: 150px;
+        height: 40px;
+        background-color: transparent;
+        color: #4d4dfd;
+        font-weight: 800;
+        border: 2px solid #4d4dfd;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: 0.3s;
+        &:hover{
+            background-color: #4d4dfd;
+            color: white;
+        }
     }
 }
