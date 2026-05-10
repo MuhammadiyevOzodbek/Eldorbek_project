@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import './HomeStyle.css'
 import EldorbekImg from '../../../../public/HomeImg/Eldorbek Yulchiyev.jpg'
+import TelegramIcon from '../../../../public/HomeImg/telegram.png'
+import InstagramIcon from '../../../../public/HomeImg/instagram.png'
+import GmailIcon from '../../../../public/HomeImg/gmail.png'
 
 function HomePage() {
 
@@ -70,23 +73,26 @@ function HomePage() {
             </div>
 
             <div className='home-about'>
-
                 <h1>
                     Hi, It's <span>Eldorbek Yulchiyev</span>
                 </h1>
-
                 <h2 className="typing-text">
                     I am <span>{text}</span>
                 </h2>
-
                 <p>
                     I am Eldorbek Yulchiyev, son of Asror. I was born on May 12, 2002,
                     in Chinoz district, Tashkent region. I am an ambitious person and
                     I aim to become a highly qualified specialist in my field in the future.
                 </p>
-
+                <div className="home-cv">
+                <div className="home-icon">
+                    <a href="https://t.me/IbnAsror"><img src={TelegramIcon} alt="Telegram" /></a>
+                    <a href="https://www.instagram.com/eldorbek.yulchiyev"><img src={InstagramIcon} alt="Instagram" /></a>
+                    <img src={GmailIcon} alt="Gmail" />
+                </div>
+                <a href="/public/File CV/CV.docx" download ><button>Download CV</button></a>
+                </div>
             </div>
-
         </div>
     )
 }

@@ -77,6 +77,19 @@
   padding-right: 8px;
   animation: blink 0.7s infinite;
 }
+.home-page .home-about .home-icon {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-top: 15px;
+  gap: 15px;
+}
+.home-page .home-about .home-icon img {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background-color: transparent;
+}
 
 @keyframes blink {
   50% {

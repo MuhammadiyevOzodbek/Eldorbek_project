@@ -1,6 +1,7 @@
 import NavbarLayout from "./components/layout/NavbarLayout"
 import HomePage from './components/context/HomePage/HomePage'
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import NotPage from "./components/NotFound/NotPage"
 
 function App() {
   const routes = createBrowserRouter([
@@ -13,6 +14,10 @@ function App() {
           element: <HomePage/>
         }
       ]
+    },
+    {
+      path: '*',
+      element: <NotPage/>
     }
   ])
   return (
