@@ -7,8 +7,8 @@
   align-items: center;
 }
 .profile-box .profile-img {
-  width: 400px;
-  height: 400px;
+  width: 420px;
+  height: 420px;
   border-radius: 100%;
   -o-object-fit: cover;
      object-fit: cover;
@@ -60,16 +60,16 @@
   margin: 90px auto;
 }
 .home-page .home-about {
-  width: 60%;
+  width: 50%;
 }
 .home-page .home-about h1 {
-  font-size: 45px;
+  font-size: 40px;
 }
 .home-page .home-about h1 span {
   color: #4d4dfd;
 }
 .home-page .home-about .typing-text {
-  font-size: 40px;
+  font-size: 35px;
 }
 .home-page .home-about .typing-text span {
   color: #38bdf8;
@@ -190,10 +190,10 @@
     margin: 90px auto;
   }
   .home-page .home-about {
-    width: 50%;
+    width: 45%;
   }
   .home-page .home-about h1 {
-    font-size: 30px;
+    font-size: 27px;
   }
   .home-page .home-about h1 span {
     color: #4d4dfd;
@@ -374,7 +374,7 @@
   .home-cv {
     display: flex;
     align-items: center;
-    gap: 80px;
+    gap: 30px;
     margin-top: 10px;
   }
   .home-cv button {
@@ -403,8 +403,8 @@
     align-items: center;
   }
   .profile-box .profile-img {
-    width: 210px;
-    height: 210px;
+    width: 230px;
+    height: 230px;
     border-radius: 100%;
     -o-object-fit: cover;
        object-fit: cover;
@@ -506,7 +506,6 @@
   }
   .home-cv {
     display: block;
-    gap: 80px;
     margin-top: 10px;
   }
   .home-cv a {
@@ -539,8 +538,8 @@
     align-items: center;
   }
   .profile-box .profile-img {
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     border-radius: 100%;
     -o-object-fit: cover;
        object-fit: cover;
