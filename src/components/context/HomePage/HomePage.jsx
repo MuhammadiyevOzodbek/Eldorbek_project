@@ -86,7 +86,7 @@ function HomePage() {
                 </p>
                 <div className="home-cv">
                 <div className="home-icon">
-                    <a href="https://t.me/IbnAsror"><img src={TelegramIcon} alt="Telegram" /></a>
+                    <a href="https://t.me/IbnAsror" className="home-tel"><img src={TelegramIcon} alt="Telegram" /></a>
                     <a href="https://www.instagram.com/eldorbek.yulchiyev"><img src={InstagramIcon} alt="Instagram" /></a>
                     <a href="https://mail.gmail.com/eldoryulchiyev@gmail.com"><img src={GmailIcon} alt="Gmail" /> </a>
                 </div>

@@ -99,12 +99,21 @@
             align-items: center;
             margin-top: 15px;
             gap: 15px;
-
+            a{
+                background-color: transparent;
+            }
             img {
-                width: 30px;
-                height: 30px;
+                width: 40px;
+                height: 40px;
                 cursor: pointer;
                 background-color: transparent;
+                transition: all 0.3s ease;
+                .home-tel{
+                    border-radius: 50%;
+                }
+                &:hover {
+                    transform: scale(1.2);
+                }
             }
         }
     }
@@ -115,12 +124,14 @@
         border-color: transparent;
     }
 }
-.home-cv{
+
+.home-cv {
     display: flex;
     align-items: center;
     gap: 80px;
     margin-top: 10px;
-    button{
+
+    button {
         width: 150px;
         height: 40px;
         background-color: transparent;
@@ -130,7 +141,8 @@
         cursor: pointer;
         border-radius: 10px;
         transition: 0.3s;
-        &:hover{
+
+        &:hover {
             background-color: #4d4dfd;
             color: white;
         }

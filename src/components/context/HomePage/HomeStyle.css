@@ -84,11 +84,21 @@
   margin-top: 15px;
   gap: 15px;
 }
+.home-page .home-about .home-icon a {
+  background-color: transparent;
+}
 .home-page .home-about .home-icon img {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   background-color: transparent;
+  transition: all 0.3s ease;
+}
+.home-page .home-about .home-icon img .home-tel {
+  border-radius: 50%;
+}
+.home-page .home-about .home-icon img:hover {
+  transform: scale(1.2);
 }
 
 @keyframes blink {
