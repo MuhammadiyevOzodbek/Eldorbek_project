@@ -4,6 +4,8 @@ import EldorbekImg from '../../../../public/HomeImg/Eldorbek Yulchiyev.jpg'
 import TelegramIcon from '../../../../public/HomeImg/telegram.png'
 import InstagramIcon from '../../../../public/HomeImg/instagram.png'
 import GmailIcon from '../../../../public/HomeImg/gmail.png'
+import Aos from "aos";
+import "aos/dist/aos.css"
 
 function HomePage() {
 
@@ -24,6 +26,11 @@ function HomePage() {
         const currentWord = words[wordIndex];
 
         const timeout = setTimeout(() => {
+
+            Aos.init({
+                duration: 1000,
+                once: true,
+            })
 
             if (!isDeleting) {
 
@@ -57,7 +64,7 @@ function HomePage() {
     return (
         <div className='home-page'>
 
-            <div className="profile-box">
+            <div data-aos="fade-up-right" className="profile-box">
 
                 <span className="ripple"></span>
                 <span className="ripple"></span>
@@ -73,24 +80,24 @@ function HomePage() {
             </div>
 
             <div className='home-about'>
-                <h1>
+                <h1 data-aos="fade-down">
                     Hi, It's <span>Eldorbek Yulchiyev</span>
                 </h1>
-                <h2 className="typing-text">
+                <h2 data-aos="zoom-in-right" className="typing-text">
                     I am <span>{text}</span>
                 </h2>
-                <p>
+                <p data-aos="zoom-in-left">
                     I am Eldorbek Yulchiyev, son of Asror. I was born on May 12, 2002,
                     in Chinoz district, Tashkent region. I am an ambitious person and
                     I aim to become a highly qualified specialist in my field in the future.
                 </p>
                 <div className="home-cv">
-                <div className="home-icon">
-                    <a href="https://t.me/IbnAsror" className="home-tel"><img src={TelegramIcon} alt="Telegram" /></a>
-                    <a href="https://www.instagram.com/eldorbek.yulchiyev"><img src={InstagramIcon} alt="Instagram" /></a>
-                    <a href="https://eldoryulchiyev@gmail.com"><img src={GmailIcon} alt="Gmail" /> </a>
-                </div>
-                <a href="/public/File CV/CV.docx" download><button>Download CV</button></a>
+                    <div data-aos="fade-right" className="home-icon">
+                        <a href="https://t.me/IbnAsror" className="home-tel"><img src={TelegramIcon} alt="Telegram" /></a>
+                        <a href="https://www.instagram.com/eldorbek.yulchiyev"><img src={InstagramIcon} alt="Instagram" /></a>
+                        <a href="https://eldoryulchiyev@gmail.com"><img src={GmailIcon} alt="Gmail" /> </a>
+                    </div>
+                    <a data-aos="fade-left" href="/public/File CV/CV.docx" download><button>Download CV</button></a>
                 </div>
             </div>
         </div>
