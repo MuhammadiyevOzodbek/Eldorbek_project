@@ -1,107 +1,111 @@
 import { useEffect, useState } from "react";
-import './HomeStyle.css'
-import EldorbekImg from '../../../../public/HomeImg/Eldorbek Yulchiyev.jpg'
-import TelegramIcon from '../../../../public/HomeImg/telegram.png'
-import InstagramIcon from '../../../../public/HomeImg/instagram.png'
-import GmailIcon from '../../../../public/HomeImg/gmail.png'
 import Aos from "aos";
-import "aos/dist/aos.css"
+import "aos/dist/aos.css";
+import "./HomeStyle.scss";
+
+import EldorbekImg from "../../../../public/HomeImg/Eldorbek Yulchiyev.jpg";
+import TelegramIcon from "../../../../public/HomeImg/telegram.png";
+import InstagramIcon from "../../../../public/HomeImg/instagram.png";
+import GmailIcon from "../../../../public/HomeImg/gmail.png";
 
 function HomePage() {
+  const words = ["Book Translator", "Translator", "Teacher", "Creator"];
 
-    const words = [
-        "Book Translator",
-        "Translator",
-        "Teacher",
-        "Creator"
-    ];
+  const [text, setText] = useState("");
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [letterIndex, setLetterIndex] = useState(0);
 
-    const [text, setText] = useState("");
-    const [wordIndex, setWordIndex] = useState(0);
-    const [isDeleting, setIsDeleting] = useState(false);
-    const [letterIndex, setLetterIndex] = useState(0);
+  useEffect(() => {
+    Aos.init({
+      duration: 1000,
+      once: true,
+    });
+  }, []);
 
-    useEffect(() => {
+  useEffect(() => {
+    const currentWord = words[wordIndex];
 
-        const currentWord = words[wordIndex];
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        setText(currentWord.substring(0, letterIndex + 1));
+        setLetterIndex(letterIndex + 1);
 
-        const timeout = setTimeout(() => {
+        if (letterIndex + 1 === currentWord.length) {
+          setTimeout(() => setIsDeleting(true), 1000);
+        }
+      } else {
+        setText(currentWord.substring(0, letterIndex - 1));
+        setLetterIndex(letterIndex - 1);
 
-            Aos.init({
-                duration: 1000,
-                once: true,
-            })
+        if (letterIndex === 0) {
+          setIsDeleting(false);
+          setWordIndex((prev) => (prev + 1) % words.length);
+        }
+      }
+    }, isDeleting ? 70 : 120);
 
-            if (!isDeleting) {
+    return () => clearTimeout(timeout);
+  }, [letterIndex, isDeleting, wordIndex]);
 
-                setText(currentWord.substring(0, letterIndex + 1));
-                setLetterIndex(letterIndex + 1);
+  return (
+    <div className="home-page">
 
-                if (letterIndex + 1 === currentWord.length) {
-                    setTimeout(() => {
-                        setIsDeleting(true);
-                    }, 1000);
-                }
+      {/* PROFILE */}
+      <div className="profile-box" data-aos="fade-right">
 
-            } else {
+        <span className="ripple"></span>
+        <span className="ripple"></span>
+        <span className="ripple"></span>
+        <span className="ripple"></span>
 
-                setText(currentWord.substring(0, letterIndex - 1));
-                setLetterIndex(letterIndex - 1);
+        <img src={EldorbekImg} alt="profile" className="profile-img" />
+      </div>
 
-                if (letterIndex === 0) {
-                    setIsDeleting(false);
-                    setWordIndex((wordIndex + 1) % words.length);
-                }
+      {/* TEXT */}
+      <div className="home-about">
 
-            }
+        <h1 data-aos="fade-down">
+          Hi, It's <span>Eldorbek Yulchiyev</span>
+        </h1>
 
-        }, isDeleting ? 70 : 120);
+        <h2 data-aos="zoom-in" className="typing-text">
+          I am <span>{text}</span>
+        </h2>
 
-        return () => clearTimeout(timeout);
+        <p data-aos="fade-up">
+          I am Eldorbek Yulchiyev, son of Asror. Born in Chinoz district,
+          Tashkent region. I aim to become a professional specialist.
+        </p>
 
-    }, [letterIndex, isDeleting, wordIndex]);
+        {/* ICONS */}
+        <div className="home-icon" data-aos="fade-right">
 
-    return (
-        <div className='home-page'>
+          <a href="https://t.me/IbnAsror">
+            <img src={TelegramIcon} alt="telegram" />
+          </a>
 
-            <div data-aos="fade-up-right" className="profile-box">
+          <a href="https://instagram.com">
+            <img src={InstagramIcon} alt="instagram" />
+          </a>
 
-                <span className="ripple"></span>
-                <span className="ripple"></span>
-                <span className="ripple"></span>
-                <span className="ripple"></span>
+          <a href="mailto:eldoryulchiyev@gmail.com">
+            <img src={GmailIcon} alt="gmail" />
+          </a>
 
-                <img
-                    src={EldorbekImg}
-                    alt="profile"
-                    className="profile-img"
-                />
-
-            </div>
-
-            <div className='home-about'>
-                <h1 data-aos="fade-down">
-                    Hi, It's <span>Eldorbek Yulchiyev</span>
-                </h1>
-                <h2 data-aos="zoom-in-right" className="typing-text">
-                    I am <span>{text}</span>
-                </h2>
-                <p data-aos="zoom-in-left">
-                    I am Eldorbek Yulchiyev, son of Asror. I was born on May 12, 2002,
-                    in Chinoz district, Tashkent region. I am an ambitious person and
-                    I aim to become a highly qualified specialist in my field in the future.
-                </p>
-                <div className="home-cv">
-                    <div data-aos="fade-right" className="home-icon">
-                        <a href="https://t.me/IbnAsror" className="home-tel"><img src={TelegramIcon} alt="Telegram" /></a>
-                        <a href="https://www.instagram.com/eldorbek.yulchiyev"><img src={InstagramIcon} alt="Instagram" /></a>
-                        <a href="https://eldoryulchiyev@gmail.com"><img src={GmailIcon} alt="Gmail" /> </a>
-                    </div>
-                    <a data-aos="fade-left" href="/public/File CV/CV.docx" download><button>Download CV</button></a>
-                </div>
-            </div>
         </div>
-    )
+
+        {/* CV */}
+        <div className="home-cv" data-aos="fade-left">
+          <a href="/public/File CV/CV.docx" download>
+            <button>Download CV</button>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  );
 }
 
-export default HomePage
+export default HomePage;

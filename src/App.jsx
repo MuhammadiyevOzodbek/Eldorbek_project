@@ -6,6 +6,7 @@ import { useEffect } from "react"
 import Aos from "aos"
 import "aos/dist/aos.css"
 import Contact from "./components/context/ContactPage/Contact"
+import About from "./components/context/AboutPage/About"
 
 function App() {
   useEffect(() => {
@@ -26,9 +27,13 @@ function App() {
           element: <HomePage/>
         },
         {
+          path: '/about',
+          element: <About/>
+        },
+        {
           path: '/contact',
           element: <Contact/>
-        }
+        },
       ]
     },
     {

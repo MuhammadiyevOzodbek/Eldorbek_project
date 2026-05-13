@@ -1,0 +1,108 @@
+@charset "UTF-8";
+.about {
+  min-height: 100vh;
+  padding: 60px 20px;
+  background: #f6f7ff;
+  position: relative;
+  overflow-x: hidden;
+}
+.about .bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(77, 77, 253, 0.2), transparent 40%), radial-gradient(circle at 80% 80%, rgba(106, 106, 255, 0.2), transparent 40%);
+}
+.about .hero {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.about .hero h1 {
+  font-size: 50px;
+  color: #4d4dfd;
+}
+.about .hero p {
+  color: #666;
+}
+.about .card {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 25px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(77, 77, 253, 0.15);
+  box-shadow: 0 15px 40px rgba(77, 77, 253, 0.12);
+  transition: 0.3s;
+}
+.about .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 60px rgba(77, 77, 253, 0.2);
+}
+.about .card h2 {
+  color: #4d4dfd;
+  margin-bottom: 15px;
+}
+.about .card p, .about .card li {
+  color: #444;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.about .card ul {
+  padding-left: 20px;
+}
+.about {
+  /* SKILL */
+}
+.about .skill {
+  margin-bottom: 18px;
+}
+.about .skill .top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.about .skill .top p {
+  font-weight: 500;
+}
+.about .skill .top span {
+  color: #4d4dfd;
+  font-weight: 600;
+}
+.about .skill .bar {
+  width: 100%;
+  height: 10px;
+  background: #e9e9ff;
+  border-radius: 50px;
+  overflow: hidden;
+}
+.about .skill .fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 50px;
+  background: linear-gradient(90deg, #4d4dfd, #6a6aff);
+  transition: width 1.5s ease-in-out;
+}
+
+/* 📱 MEDIA */
+@media (max-width: 992px) {
+  .about .hero h1 {
+    font-size: 40px;
+  }
+  .about .card {
+    max-width: 95%;
+  }
+}
+@media (max-width: 600px) {
+  .about {
+    padding: 40px 10px;
+  }
+  .about .hero h1 {
+    font-size: 32px;
+  }
+  .about .card {
+    padding: 18px;
+  }
+  .about .card p,
+  .about .card li {
+    font-size: 13px;
+  }
+}/*# sourceMappingURL=AboutStyle.css.map */
