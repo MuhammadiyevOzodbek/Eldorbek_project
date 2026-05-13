@@ -2,8 +2,20 @@ import NavbarLayout from "./components/layout/NavbarLayout"
 import HomePage from './components/context/HomePage/HomePage'
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import NotPage from "./components/NotFound/NotPage"
+import { useEffect } from "react"
+import Aos from "aos"
+import "aos/dist/aos.css"
+import Contact from "./components/context/ContactPage/Contact"
 
 function App() {
+  useEffect(() => {
+    Aos.init({
+      duration: 1000,
+      once: true,
+      offset: 100,
+    })
+  }, [])
+
   const routes = createBrowserRouter([
     {
       path: '/',
@@ -12,6 +24,10 @@ function App() {
         {
           path: '/',
           element: <HomePage/>
+        },
+        {
+          path: '/contact',
+          element: <Contact/>
         }
       ]
     },
