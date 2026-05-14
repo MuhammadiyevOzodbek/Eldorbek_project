@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import "./HomeStyle.scss";
+import "./HomeStyle.css";
 
 import EldorbekImg from "../../../../public/HomeImg/Eldorbek Yulchiyev.jpg";
 import TelegramIcon from "../../../../public/HomeImg/telegram.png";

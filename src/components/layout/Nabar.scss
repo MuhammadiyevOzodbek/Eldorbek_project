@@ -7,10 +7,17 @@ nav {
     align-items: center;
     font-family: Open Sans;
     padding: 8px 0px;
+    position: relative;
+    z-index: 1000;
 
     .nav-div1 {
         display: flex;
         align-items: center;
+
+        .nav-logo {
+            width: 60px;
+            height: 60px;
+        }
 
         h1 {
             font-family: Archivo black;
@@ -71,12 +78,9 @@ nav {
         height: 30px;
         border: none;
         background-color: transparent;
+        cursor: pointer;
 
-        .sun-svg {
-            width: 100%;
-            height: 100%;
-        }
-
+        .sun-svg,
         .moon-svg {
             width: 100%;
             height: 100%;
@@ -91,17 +95,15 @@ nav {
     }
 }
 
-@media(max-width: 1024px) {
+/* ========================= */
+/* 1024px */
+/* ========================= */
+
+@media(max-width:1024px) {
+
     nav {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        font-family: Open Sans;
-        padding: 8px 0px;
 
         .nav-div1 {
-            display: flex;
-            align-items: center;
 
             .nav-logo {
                 width: 50px;
@@ -109,170 +111,79 @@ nav {
             }
 
             h1 {
-                font-family: Archivo black;
                 font-size: 30px;
-
-                span {
-                    color: #4d4dfd;
-                }
             }
         }
 
         ul {
-            display: flex;
-            list-style: none;
-
-            a {
-                text-decoration: none;
-                color: black;
-            }
 
             li {
-                position: relative;
-                font-size: 1.15em;
-                font-weight: 500;
-                padding: 6px 20px;
-                transition: 0.5s;
-                cursor: pointer;
-                z-index: 2;
-
-                &:hover {
-                    color: #4d4dfd;
-
-                    span {
-                        transform: scale(1) translateY(0);
-                        opacity: 1;
-                    }
-                }
-
-                span {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    z-index: 1;
-                    border-bottom: 3px solid #4d4dfd;
-                    border-radius: 15px;
-                    transform: scale(0) translateY(50px);
-                    opacity: 0;
-                    transition: 0.5s;
-                }
+                font-size: 1.1em;
+                padding: 6px 15px;
             }
-        }
-
-        .dark-btn {
-            width: 30px;
-            height: 30px;
-            border: none;
-            background-color: transparent;
-
-            .sun-svg {
-                width: 100%;
-                height: 100%;
-            }
-
-            .moon-svg {
-                width: 100%;
-                height: 100%;
-            }
-        }
-
-        .nav-burger {
-            display: none;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
         }
     }
 }
 
-@media(max-width: 768px) {
+/* ========================= */
+/* 768px (🔥 FIX + ANIMATION) */
+/* ========================= */
+
+@media(max-width:768px) {
+
     nav {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        font-family: Open Sans;
-        padding: 8px 0px;
+        position: relative;
 
         .nav-div1 {
-            display: flex;
-            align-items: center;
 
             .nav-logo {
-                width: 50px;
-                height: 50px;
+                width: 45px;
+                height: 45px;
             }
 
             h1 {
-                font-family: Archivo black;
-                font-size: 30px;
-
-                span {
-                    color: #4d4dfd;
-                }
+                font-size: 28px;
             }
         }
 
         ul {
-            display: none;
-            list-style: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
 
-            a {
-                text-decoration: none;
-                color: black;
+            width: 250px;
+            height: 100vh;
+
+            background: white;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            gap: 30px;
+
+            /* 🔥 SMOOTH ANIMATION */
+            transition: right 0.45s ease, opacity 0.45s ease, transform 0.45s ease;
+
+            opacity: 0;
+            transform: translateX(40px);
+
+            z-index: 9999;
+
+            &.show-menu {
+                right: 0;
+                opacity: 1;
+                transform: translateX(0);
             }
 
             li {
-                position: relative;
-                font-size: 1.15em;
-                font-weight: 500;
-                padding: 6px 20px;
-                transition: 0.5s;
-                cursor: pointer;
-                z-index: 2;
-
-                &:hover {
-                    color: #4d4dfd;
-
-                    span {
-                        transform: scale(1) translateY(0);
-                        opacity: 1;
-                    }
-                }
-
-                span {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    z-index: 1;
-                    border-bottom: 3px solid #4d4dfd;
-                    border-radius: 15px;
-                    transform: scale(0) translateY(50px);
-                    opacity: 0;
-                    transition: 0.5s;
-                }
+                font-size: 1.2em;
             }
         }
 
         .dark-btn {
-            width: 30px;
-            height: 30px;
-            border: none;
-            background-color: transparent;
             display: none;
-
-            .sun-svg {
-                width: 100%;
-                height: 100%;
-            }
-
-            .moon-svg {
-                width: 100%;
-                height: 100%;
-            }
         }
 
         .nav-burger {
@@ -284,17 +195,15 @@ nav {
     }
 }
 
-@media(max-width: 425px) {
+/* ========================= */
+/* 425px */
+/* ========================= */
+
+@media(max-width:425px) {
+
     nav {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        font-family: Open Sans;
-        padding: 8px 0px;
 
         .nav-div1 {
-            display: flex;
-            align-items: center;
 
             .nav-logo {
                 width: 40px;
@@ -302,95 +211,30 @@ nav {
             }
 
             h1 {
-                font-family: Archivo black;
-                font-size: 30px;
-
-                span {
-                    color: #4d4dfd;
-                }
+                font-size: 24px;
             }
         }
 
         ul {
-            display: flex;
-            list-style: none;
-
-            a {
-                text-decoration: none;
-                color: black;
-            }
-
-            li {
-                position: relative;
-                font-size: 1.15em;
-                font-weight: 500;
-                padding: 6px 20px;
-                transition: 0.5s;
-                cursor: pointer;
-                z-index: 2;
-
-                &:hover {
-                    color: #4d4dfd;
-
-                    span {
-                        transform: scale(1) translateY(0);
-                        opacity: 1;
-                    }
-                }
-
-                span {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    z-index: 1;
-                    border-bottom: 3px solid #4d4dfd;
-                    border-radius: 15px;
-                    transform: scale(0) translateY(50px);
-                    opacity: 0;
-                    transition: 0.5s;
-                }
-            }
-        }
-
-        .dark-btn {
-            width: 30px;
-            height: 30px;
-            border: none;
-            background-color: transparent;
-
-            .sun-svg {
-                width: 100%;
-                height: 100%;
-            }
-
-            .moon-svg {
-                width: 100%;
-                height: 100%;
-            }
+            width: 220px;
         }
 
         .nav-burger {
-            display: none;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
+            width: 35px;
+            height: 35px;
         }
     }
 }
 
-@media(max-width: 424px) {
+/* ========================= */
+/* 320px */
+/* ========================= */
+
+@media(max-width:320px) {
+
     nav {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        font-family: Open Sans;
-        padding: 8px 0px;
 
         .nav-div1 {
-            display: flex;
-            align-items: center;
 
             .nav-logo {
                 width: 30px;
@@ -398,80 +242,17 @@ nav {
             }
 
             h1 {
-                font-family: Archivo black;
                 font-size: 20px;
-
-                span {
-                    color: #4d4dfd;
-                }
             }
         }
 
         ul {
-            display: none;
-            list-style: none;
-
-            a {
-                text-decoration: none;
-                color: black;
-            }
-
-            li {
-                position: relative;
-                font-size: 1.15em;
-                font-weight: 500;
-                padding: 6px 20px;
-                transition: 0.5s;
-                cursor: pointer;
-                z-index: 2;
-
-                &:hover {
-                    color: #4d4dfd;
-
-                    span {
-                        transform: scale(1) translateY(0);
-                        opacity: 1;
-                    }
-                }
-
-                span {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    z-index: 1;
-                    border-bottom: 3px solid #4d4dfd;
-                    border-radius: 15px;
-                    transform: scale(0) translateY(50px);
-                    opacity: 0;
-                    transition: 0.5s;
-                }
-            }
-        }
-
-        .dark-btn {
-            width: 30px;
-            height: 30px;
-            border: none;
-            background-color: transparent;
-
-            .sun-svg {
-                width: 100%;
-                height: 100%;
-            }
-
-            .moon-svg {
-                width: 100%;
-                height: 100%;
-            }
+            width: 200px;
         }
 
         .nav-burger {
-            display: block;
             width: 30px;
             height: 30px;
-            cursor: pointer;
         }
     }
 }

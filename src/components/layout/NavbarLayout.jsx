@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import BookSvg from "../../../public/LayoutSvg/book.svg"
 import "./Nabar.css"
 import SunSvg from "../../../public/LayoutSvg/sun-svgrepo-com.svg"
@@ -9,43 +9,84 @@ import Aos from "aos"
 import "aos/dist/aos.css"
 
 function NavbarLayout() {
+
     const [dark, setDark] = useState(false)
     const [open, setOpen] = useState(false)
 
+    const menuRef = useRef(null)
+    const burgerRef = useRef(null)
+
     useEffect(() => {
-        Aos.init({
-            duration:1000,
-            once: true,
-        })
+        Aos.init({ duration: 1000, once: true })
+
+        const handleClickOutside = (event) => {
+            if (
+                menuRef.current &&
+                !menuRef.current.contains(event.target) &&
+                burgerRef.current &&
+                !burgerRef.current.contains(event.target)
+            ) {
+                setOpen(false)
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside)
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside)
+        }
     }, [])
 
     return (
         <div className={dark ? "dark" : ""}>
             <nav>
-                <div className="nav-div1" data-aos="fade-right">
+
+                <div className="nav-div1">
                     <img className="nav-logo" src={BookSvg} alt="Book" />
                     <h1>Meros<span>Blog</span></h1>
                 </div>
-                <img className="nav-burger" onClick={() => setOpen(!open)} src={Burger} alt="Burger" />
 
-                <ul data-aos="fade-down">
-                    <Link to={'/'}>
-                        <li> Home<span></span></li>
+                <img
+                    ref={burgerRef}
+                    className="nav-burger"
+                    onClick={() => setOpen(!open)}
+                    src={Burger}
+                    alt="Burger"
+                />
+
+                <ul
+                    ref={menuRef}
+                    className={open ? "show-menu" : ""}
+                >
+                    <Link to="/" onClick={() => setOpen(false)}>
+                        <li>Home<span></span></li>
                     </Link>
-                    <Link to={'/about'}>
+
+                    <Link to="/about" onClick={() => setOpen(false)}>
                         <li>About<span></span></li>
                     </Link>
-                    <Link to={'/books'}>
+
+                    <Link to="/books" onClick={() => setOpen(false)}>
                         <li>Books<span></span></li>
                     </Link>
-                    <Link to={'/contact'}>
+
+                    <Link to="/contact" onClick={() => setOpen(false)}>
                         <li>Contact<span></span></li>
                     </Link>
                 </ul>
-                <button data-aos="fade-left" onClick={() => setDark(!dark)} className="dark-btn">
-                    {dark ? <img className="sun-svg" src={SunSvg} alt="Light Mode" /> : <img className="moon-svg" src={MoonSvg} alt="Dark Mode" />}
+
+                <button
+                    onClick={() => setDark(!dark)}
+                    className="dark-btn"
+                >
+                    {dark
+                        ? <img className="sun-svg" src={SunSvg} alt="Light Mode" />
+                        : <img className="moon-svg" src={MoonSvg} alt="Dark Mode" />
+                    }
                 </button>
+
             </nav>
+
             <Outlet />
         </div>
     )
