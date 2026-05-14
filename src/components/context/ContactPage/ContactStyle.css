@@ -1,16 +1,77 @@
 .contact {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #f6f7ff;
   position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+.contact::before {
+  content: "";
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(77, 77, 253, 0.25), transparent 70%);
+  top: -200px;
+  left: -200px;
+  animation: moveBlob1 10s infinite alternate ease-in-out;
+  z-index: 1;
+}
+.contact::after {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 183, 255, 0.2), transparent 70%);
+  bottom: -200px;
+  right: -200px;
+  animation: moveBlob2 12s infinite alternate ease-in-out;
+  z-index: 1;
+}
+.contact .circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(77, 77, 253, 0.1);
+  backdrop-filter: blur(10px);
+  animation: float 6s infinite ease-in-out;
+  z-index: 1;
+}
+.contact .circle:nth-child(1) {
+  width: 120px;
+  height: 120px;
+  top: 10%;
+  left: 15%;
+}
+.contact .circle:nth-child(2) {
+  width: 80px;
+  height: 80px;
+  bottom: 15%;
+  left: 10%;
+  animation-duration: 8s;
+}
+.contact .circle:nth-child(3) {
+  width: 150px;
+  height: 150px;
+  top: 20%;
+  right: 10%;
+  animation-duration: 10s;
+}
+.contact .circle:nth-child(4) {
+  width: 100px;
+  height: 100px;
+  bottom: 10%;
+  right: 20%;
+  animation-duration: 7s;
 }
 .contact .card {
   width: 480px;
   padding: 40px;
   border-radius: 25px;
+  position: relative;
+  z-index: 5;
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(77, 77, 253, 0.15);
@@ -91,6 +152,33 @@
   animation: shake 0.3s ease-in-out;
 }
 
+@keyframes moveBlob1 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(80px, 60px) scale(1.2);
+  }
+}
+@keyframes moveBlob2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(-60px, -80px) scale(1.1);
+  }
+}
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
 @keyframes shake {
   0% {
     transform: translateX(0);
@@ -106,5 +194,14 @@
   }
   100% {
     transform: translateX(0);
+  }
+}
+@media (max-width: 550px) {
+  .contact .card {
+    width: 100%;
+    padding: 25px;
+  }
+  .contact .card .header h1 {
+    font-size: 32px;
   }
 }/*# sourceMappingURL=ContactStyle.css.map */
