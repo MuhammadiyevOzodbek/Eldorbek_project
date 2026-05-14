@@ -4,7 +4,7 @@ import "./Nabar.css"
 import SunSvg from "../../../public/LayoutSvg/sun-svgrepo-com.svg"
 import MoonSvg from "../../../public/LayoutSvg/moon-svgrepo-com.svg"
 import { Link, Outlet } from "react-router-dom"
-import Burger from '../../../public/LayoutSvg/burger-bar.png'
+import Burger from "../../../public/LayoutSvg/burger-bar.png"
 import Aos from "aos"
 import "aos/dist/aos.css"
 
@@ -12,6 +12,7 @@ function NavbarLayout() {
 
     const [dark, setDark] = useState(false)
     const [open, setOpen] = useState(false)
+    const [scrolled, setScrolled] = useState(false)
 
     const menuRef = useRef(null)
     const burgerRef = useRef(null)
@@ -19,6 +20,14 @@ function NavbarLayout() {
     useEffect(() => {
         Aos.init({ duration: 1000, once: true })
 
+        // 🔥 scroll blur
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50)
+        }
+
+        window.addEventListener("scroll", handleScroll)
+
+        // 🔥 outside click close menu
         const handleClickOutside = (event) => {
             if (
                 menuRef.current &&
@@ -33,13 +42,15 @@ function NavbarLayout() {
         document.addEventListener("mousedown", handleClickOutside)
 
         return () => {
+            window.removeEventListener("scroll", handleScroll)
             document.removeEventListener("mousedown", handleClickOutside)
         }
     }, [])
 
     return (
         <div className={dark ? "dark" : ""}>
-            <nav>
+
+            <nav className={scrolled ? "scrolled" : ""}>
 
                 <div className="nav-div1">
                     <img className="nav-logo" src={BookSvg} alt="Book" />
@@ -79,10 +90,11 @@ function NavbarLayout() {
                     onClick={() => setDark(!dark)}
                     className="dark-btn"
                 >
-                    {dark
-                        ? <img className="sun-svg" src={SunSvg} alt="Light Mode" />
-                        : <img className="moon-svg" src={MoonSvg} alt="Dark Mode" />
-                    }
+                    {dark ? (
+                        <img className="sun-svg" src={SunSvg} alt="Light Mode" />
+                    ) : (
+                        <img className="moon-svg" src={MoonSvg} alt="Dark Mode" />
+                    )}
                 </button>
 
             </nav>

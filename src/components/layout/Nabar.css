@@ -185,4 +185,24 @@ nav .nav-burger {
     width: 30px;
     height: 30px;
   }
+}
+/* ========================= */
+/* 🔥 SCROLL BLUR EFFECT */
+/* ========================= */
+nav.scrolled {
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  transition: 0.4s ease;
+  z-index: 1000;
+}
+
+/* 🌙 DARK MODE VERSION */
+.dark nav.scrolled {
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }/*# sourceMappingURL=Nabar.css.map */
