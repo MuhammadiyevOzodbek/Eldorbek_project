@@ -10,7 +10,7 @@ function Contact() {
 
   // 🔥 O'ZINGNI TOKEN VA CHAT ID QO'YASAN
   const BOT_TOKEN = "8636470762:AAH13el_4oCIUryBAKurpNiQgVVeulCpFmQ"
-  const CHAT_ID = "5481848326"
+  const CHAT_ID = "1406564230"
 
   const handleSubmit = async (e) => {
     e.preventDefault()
