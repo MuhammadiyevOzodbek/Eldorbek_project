@@ -1,51 +1,90 @@
+import { lazy, Suspense, useEffect } from "react"
 import NavbarLayout from "./components/layout/NavbarLayout"
-import HomePage from './components/context/HomePage/HomePage'
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import NotPage from "./components/NotFound/NotPage"
-import { useEffect } from "react"
 import Aos from "aos"
 import "aos/dist/aos.css"
-import Contact from "./components/context/ContactPage/Contact"
-import About from "./components/context/AboutPage/About"
+
+const HomePage = lazy(() => import("./components/context/HomePage/HomePage"))
+const About = lazy(() => import("./components/context/AboutPage/About"))
+const Contact = lazy(() => import("./components/context/ContactPage/Contact"))
+const Books = lazy(() => import("./components/context/BooksPage/Books"))
+const NotPage = lazy(() => import("./components/NotFound/NotPage"))
+
+function PageLoader() {
+  return (
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      minHeight: "50vh",
+      color: "var(--brand-500)",
+      fontWeight: 600,
+    }}>
+      Yuklanmoqda...
+    </div>
+  )
+}
 
 function App() {
   useEffect(() => {
     Aos.init({
-      duration: 1000,
+      duration: 800,
       once: true,
-      offset: 100,
+      offset: 80,
+      easing: "ease-out-cubic",
     })
   }, [])
 
   const routes = createBrowserRouter([
     {
-      path: '/',
-      element: <NavbarLayout/>,
+      path: "/",
+      element: <NavbarLayout />,
       children: [
         {
-          path: '/',
-          element: <HomePage/>
+          path: "/",
+          element: (
+            <Suspense fallback={<PageLoader />}>
+              <HomePage />
+            </Suspense>
+          ),
         },
         {
-          path: '/about',
-          element: <About/>
+          path: "/about",
+          element: (
+            <Suspense fallback={<PageLoader />}>
+              <About />
+            </Suspense>
+          ),
         },
         {
-          path: '/contact',
-          element: <Contact/>
+          path: "/books",
+          element: (
+            <Suspense fallback={<PageLoader />}>
+              <Books />
+            </Suspense>
+          ),
         },
-      ]
+        {
+          path: "/contact",
+          element: (
+            <Suspense fallback={<PageLoader />}>
+              <Contact />
+            </Suspense>
+          ),
+        },
+      ],
     },
     {
-      path: '*',
-      element: <NotPage/>
-    }
+      path: "*",
+      element: (
+        <Suspense fallback={<PageLoader />}>
+          <NotPage />
+        </Suspense>
+      ),
+    },
   ])
-  return (
-    <>
-    <RouterProvider router={routes} />
-    </>
-  )
+
+  return <RouterProvider router={routes} />
 }
 
 export default App

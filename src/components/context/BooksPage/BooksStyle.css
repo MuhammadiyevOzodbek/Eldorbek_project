@@ -1,0 +1,143 @@
+.books {
+  position: relative;
+  padding-bottom: var(--space-section);
+  min-height: calc(100vh - 80px);
+}
+
+.books-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(79, 70, 229, 0.1), transparent 45%),
+    radial-gradient(circle at 70% 80%, rgba(196, 169, 98, 0.08), transparent 40%);
+  pointer-events: none;
+}
+
+.books-hero {
+  text-align: center;
+  padding-block: var(--space-section) var(--space-block);
+  position: relative;
+  z-index: 1;
+}
+
+.books-hero h1 {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  color: var(--brand-500);
+  margin: 0.5rem 0;
+}
+
+.books-hero p {
+  color: var(--text-muted);
+}
+
+.books-coming {
+  position: relative;
+  z-index: 1;
+}
+
+.books-coming__banner {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.books-coming__banner svg:first-child {
+  color: var(--brand-500);
+  flex-shrink: 0;
+}
+
+.books-coming__banner h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.35rem;
+}
+
+.books-coming__banner p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.books-coming__clock {
+  color: var(--accent-warm);
+  margin-left: auto;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.book-card {
+  padding: 1.75rem;
+}
+
+.book-card__cover {
+  width: 64px;
+  height: 80px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--brand-500), var(--accent-400));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.book-card__status {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(196, 169, 98, 0.15);
+  color: var(--accent-warm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.book-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+}
+
+.book-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.books-cta {
+  text-align: center;
+}
+
+.books-cta p {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .books-coming__banner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .books-coming__clock {
+    margin-left: 0;
+  }
+
+  .books-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .books-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -3,105 +3,121 @@ import BookSvg from "../../../public/LayoutSvg/book.svg"
 import "./Nabar.css"
 import SunSvg from "../../../public/LayoutSvg/sun-svgrepo-com.svg"
 import MoonSvg from "../../../public/LayoutSvg/moon-svgrepo-com.svg"
-import { Link, Outlet } from "react-router-dom"
+import { Link, NavLink, Outlet } from "react-router-dom"
 import Burger from "../../../public/LayoutSvg/burger-bar.png"
-import Aos from "aos"
-import "aos/dist/aos.css"
+import Footer from "../shared/Footer"
+import WhatsAppButton from "../shared/WhatsAppButton"
+
+const navLinks = [
+  { to: "/", label: "Home", end: true },
+  { to: "/about", label: "About" },
+  { to: "/books", label: "Books" },
+  { to: "/contact", label: "Contact" },
+]
 
 function NavbarLayout() {
+  const [dark, setDark] = useState(() => localStorage.getItem("theme") === "dark")
+  const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
-    const [dark, setDark] = useState(false)
-    const [open, setOpen] = useState(false)
-    const [scrolled, setScrolled] = useState(false)
+  const menuRef = useRef(null)
+  const burgerRef = useRef(null)
 
-    const menuRef = useRef(null)
-    const burgerRef = useRef(null)
+  useEffect(() => {
+    localStorage.setItem("theme", dark ? "dark" : "light")
+  }, [dark])
 
-    useEffect(() => {
-        Aos.init({ duration: 1000, once: true })
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50)
+    window.addEventListener("scroll", handleScroll)
 
-        // 🔥 scroll blur
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 50)
-        }
+    const handleClickOutside = (event) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        burgerRef.current &&
+        !burgerRef.current.contains(event.target)
+      ) {
+        setOpen(false)
+      }
+    }
 
-        window.addEventListener("scroll", handleScroll)
+    document.addEventListener("mousedown", handleClickOutside)
 
-        // 🔥 outside click close menu
-        const handleClickOutside = (event) => {
-            if (
-                menuRef.current &&
-                !menuRef.current.contains(event.target) &&
-                burgerRef.current &&
-                !burgerRef.current.contains(event.target)
-            ) {
-                setOpen(false)
-            }
-        }
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [])
 
-        document.addEventListener("mousedown", handleClickOutside)
+  return (
+    <div className={`app-shell ${dark ? "dark" : ""}`}>
+      <a href="#main-content" className="skip-link">
+        Asosiy kontentga o'tish
+      </a>
 
-        return () => {
-            window.removeEventListener("scroll", handleScroll)
-            document.removeEventListener("mousedown", handleClickOutside)
-        }
-    }, [])
-
-    return (
-        <div className={dark ? "dark" : ""}>
-
-            <nav className={scrolled ? "scrolled" : ""}>
-
-                <div className="nav-div1">
-                    <img className="nav-logo" src={BookSvg} alt="Book" />
-                    <h1>Meros<span>Blog</span></h1>
-                </div>
-
-                <img
-                    ref={burgerRef}
-                    className="nav-burger"
-                    onClick={() => setOpen(!open)}
-                    src={Burger}
-                    alt="Burger"
-                />
-
-                <ul
-                    ref={menuRef}
-                    className={open ? "show-menu" : ""}
-                >
-                    <Link to="/" onClick={() => setOpen(false)}>
-                        <li>Home<span></span></li>
-                    </Link>
-
-                    <Link to="/about" onClick={() => setOpen(false)}>
-                        <li>About<span></span></li>
-                    </Link>
-
-                    <Link to="/books" onClick={() => setOpen(false)}>
-                        <li>Books<span></span></li>
-                    </Link>
-
-                    <Link to="/contact" onClick={() => setOpen(false)}>
-                        <li>Contact<span></span></li>
-                    </Link>
-                </ul>
-
-                <button
-                    onClick={() => setDark(!dark)}
-                    className="dark-btn"
-                >
-                    {dark ? (
-                        <img className="sun-svg" src={SunSvg} alt="Light Mode" />
-                    ) : (
-                        <img className="moon-svg" src={MoonSvg} alt="Dark Mode" />
-                    )}
-                </button>
-
-            </nav>
-
-            <Outlet />
+      <nav className={scrolled ? "scrolled" : ""} aria-label="Asosiy navigatsiya">
+        <div className="nav-div1">
+          <img className="nav-logo" src={BookSvg} alt="" />
+          <Link to="/" className="nav-brand">
+            <h1>Eldorbek <span>Yulchiyev</span></h1>
+          </Link>
         </div>
-    )
+
+        <button
+          ref={burgerRef}
+          className="nav-burger"
+          onClick={() => setOpen(!open)}
+          aria-label="Menyuni ochish"
+          aria-expanded={open}
+        >
+          <img src={Burger} alt="" />
+        </button>
+
+        <ul ref={menuRef} className={open ? "show-menu" : ""}>
+          {navLinks.map(({ to, label, end }) => (
+            <li key={to}>
+              <NavLink
+                to={to}
+                end={end}
+                onClick={() => setOpen(false)}
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                {label}
+                <span></span>
+              </NavLink>
+            </li>
+          ))}
+
+          <li className="mobile-theme">
+            <button
+              onClick={() => setDark(!dark)}
+              className="dark-btn mobile-dark-btn"
+              aria-label={dark ? "Yorug' rejim" : "Qorong'u rejim"}
+            >
+              <img src={dark ? SunSvg : MoonSvg} alt="" />
+              {dark ? "Yorug' rejim" : "Qorong'u rejim"}
+            </button>
+          </li>
+        </ul>
+
+        <button
+          onClick={() => setDark(!dark)}
+          className="dark-btn desktop-dark-btn"
+          aria-label={dark ? "Yorug' rejim" : "Qorong'u rejim"}
+        >
+          <img className={dark ? "sun-svg" : "moon-svg"} src={dark ? SunSvg : MoonSvg} alt="" />
+        </button>
+      </nav>
+
+      <main id="main-content">
+        <Outlet />
+      </main>
+
+      <Footer />
+      <WhatsAppButton />
+    </div>
+  )
 }
 
 export default NavbarLayout

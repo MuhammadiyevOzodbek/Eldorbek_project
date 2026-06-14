@@ -1,16 +1,7 @@
 import { Link } from 'react-router-dom'
 import './NotStyle.css'
-import Aos from 'aos'
-import "aos/dist/aos.css"
-import { useEffect } from 'react'
 
 function NotPage() {
-  useEffect(() => {
-    Aos.init({
-      duration: 1000,
-      once: true,
-    })
-  }, [])
   return (
     <div className="notfound">
 
