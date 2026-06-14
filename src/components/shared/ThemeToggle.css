@@ -1,0 +1,95 @@
+.theme-toggle {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.theme-toggle:disabled {
+  cursor: wait;
+  opacity: 0.85;
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--brand-400);
+  outline-offset: 3px;
+}
+
+/* Desktop — pill toggle with sliding thumb */
+.theme-toggle--desktop {
+  padding: 0;
+  background: transparent;
+}
+
+.theme-toggle__track {
+  display: flex;
+  align-items: center;
+  width: 52px;
+  height: 30px;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgba(79, 70, 229, 0.12);
+  border: 1px solid rgba(79, 70, 229, 0.2);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+html[data-theme="dark"] .theme-toggle__track {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(129, 140, 248, 0.35);
+}
+
+.theme-toggle__thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: white;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+  transform: translateX(0);
+  transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.theme-toggle__thumb--dark {
+  transform: translateX(22px);
+}
+
+@media (min-width: 769px) {
+  .theme-toggle--desktop:hover .theme-toggle__track {
+    background: rgba(79, 70, 229, 0.18);
+    box-shadow: 0 0 20px rgba(79, 70, 229, 0.15);
+  }
+}
+
+/* Mobile — full-width row in burger menu */
+.theme-toggle--mobile {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: rgba(79, 70, 229, 0.08);
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.theme-toggle--mobile .theme-toggle__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(79, 70, 229, 0.12);
+  color: var(--brand-500);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle__thumb {
+    transition: none;
+  }
+}

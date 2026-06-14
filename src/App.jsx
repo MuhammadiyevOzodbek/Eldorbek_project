@@ -8,6 +8,8 @@ const HomePage = lazy(() => import("./components/context/HomePage/HomePage"))
 const About = lazy(() => import("./components/context/AboutPage/About"))
 const Contact = lazy(() => import("./components/context/ContactPage/Contact"))
 const Books = lazy(() => import("./components/context/BooksPage/Books"))
+const Articles = lazy(() => import("./components/context/ArticlesPage/Articles"))
+const ArticleDetail = lazy(() => import("./components/context/ArticlesPage/ArticleDetail"))
 const NotPage = lazy(() => import("./components/NotFound/NotPage"))
 
 function PageLoader() {
@@ -61,6 +63,22 @@ function App() {
           element: (
             <Suspense fallback={<PageLoader />}>
               <Books />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/articles",
+          element: (
+            <Suspense fallback={<PageLoader />}>
+              <Articles />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/articles/:slug",
+          element: (
+            <Suspense fallback={<PageLoader />}>
+              <ArticleDetail />
             </Suspense>
           ),
         },

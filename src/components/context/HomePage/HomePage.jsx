@@ -12,8 +12,9 @@ import {
 } from "lucide-react"
 import "./HomeStyle.css"
 import StatCounter from "../../shared/StatCounter"
+import LatestArticles from "../../shared/LatestArticles"
 
-import EldorbekImg from "../../../../public/HomeImg/Eldorbek Yulchiyev.jpg"
+const EldorbekImg = "/HomeImg/Eldorbek Yulchiyev.jpg"
 
 const roles = ["Educator", "Translator", "Founder", "Teacher"]
 const highlights = [
@@ -186,6 +187,8 @@ function HomePage() {
           ))}
         </div>
       </section>
+
+      <LatestArticles />
     </div>
   )
 }

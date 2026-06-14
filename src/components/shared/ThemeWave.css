@@ -1,0 +1,62 @@
+/* Opening = light expands outward | Closing = light shrinks inward */
+
+.theme-wave {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.theme-wave__fill {
+  position: absolute;
+  inset: 0;
+  will-change: clip-path;
+  transform: translateZ(0);
+}
+
+.theme-wave--opening .theme-wave__fill {
+  z-index: 2;
+}
+
+.theme-wave__glow {
+  position: fixed;
+  border-radius: 50%;
+  border: 2px solid;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  will-change: width, height, opacity;
+  z-index: 3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-wave {
+    display: none;
+  }
+}
+
+@keyframes theme-wave-open {
+  from {
+    clip-path: circle(0px at var(--wave-x) var(--wave-y));
+  }
+  to {
+    clip-path: circle(var(--wave-radius) at var(--wave-x) var(--wave-y));
+  }
+}
+
+@keyframes theme-wave-close {
+  from {
+    clip-path: circle(var(--wave-radius) at var(--wave-x) var(--wave-y));
+  }
+  to {
+    clip-path: circle(0px at var(--wave-x) var(--wave-y));
+  }
+}
+
+.theme-wave--opening.theme-wave--css-fallback .theme-wave__fill {
+  animation: theme-wave-open 0.75s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.theme-wave--closing.theme-wave--css-fallback .theme-wave__fill {
+  animation: theme-wave-close 0.75s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}

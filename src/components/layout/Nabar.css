@@ -130,6 +130,12 @@ nav .nav-burger img {
   height: 100%;
 }
 
+nav .nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 nav.scrolled {
   background: var(--surface-elevated);
   backdrop-filter: blur(16px);
@@ -142,7 +148,7 @@ nav.scrolled {
 }
 
 @media (max-width: 768px) {
-  nav .desktop-dark-btn {
+  nav .nav-actions {
     display: none;
   }
 

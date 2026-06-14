@@ -1,0 +1,32 @@
+.latest-articles {
+  padding-bottom: var(--space-section);
+}
+
+.latest-articles .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.latest-articles__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.35rem;
+  margin-bottom: 2rem;
+}
+
+.latest-articles__cta {
+  text-align: center;
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .latest-articles__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .latest-articles__grid {
+    grid-template-columns: 1fr;
+  }
+}

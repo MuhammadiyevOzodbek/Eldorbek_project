@@ -16,6 +16,7 @@ function Footer() {
         <nav className="site-footer__nav" aria-label="Footer navigation">
           <Link to="/">Home</Link>
           <Link to="/about">About</Link>
+          <Link to="/articles">Articles</Link>
           <Link to="/books">Books</Link>
           <Link to="/contact">Contact</Link>
         </nav>

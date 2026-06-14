@@ -4,6 +4,19 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/LayoutSvg/book.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var stored = localStorage.getItem("theme");
+        var theme =
+          stored === "dark" || stored === "light"
+            ? stored
+            : window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+        document.documentElement.setAttribute("data-theme", theme);
+        document.documentElement.style.colorScheme = theme;
+      })();
+    </script>
     <title>Eldorbek Yulchiyev | Educator · Translator · Founder</title>
     <meta name="description" content="Eldorbek Yulchiyev — Educator, Translator, and Founder from Uzbekistan. Personal portfolio, experience, and contact." />
     <meta name="keywords" content="Eldorbek Yulchiyev, educator, translator, teacher, Uzbekistan, portfolio" />

@@ -1,31 +1,29 @@
 import { useEffect, useRef, useState } from "react"
-import BookSvg from "../../../public/LayoutSvg/book.svg"
 import "./Nabar.css"
-import SunSvg from "../../../public/LayoutSvg/sun-svgrepo-com.svg"
-import MoonSvg from "../../../public/LayoutSvg/moon-svgrepo-com.svg"
 import { Link, NavLink, Outlet } from "react-router-dom"
-import Burger from "../../../public/LayoutSvg/burger-bar.png"
 import Footer from "../shared/Footer"
 import WhatsAppButton from "../shared/WhatsAppButton"
+import ThemeToggle from "../shared/ThemeToggle"
+import { useTheme } from "../../context/ThemeContext"
+
+const BookSvg = "/LayoutSvg/book.svg"
+const Burger = "/LayoutSvg/burger-bar.png"
 
 const navLinks = [
   { to: "/", label: "Home", end: true },
   { to: "/about", label: "About" },
+  { to: "/articles", label: "Articles" },
   { to: "/books", label: "Books" },
   { to: "/contact", label: "Contact" },
 ]
 
 function NavbarLayout() {
-  const [dark, setDark] = useState(() => localStorage.getItem("theme") === "dark")
+  const { isDark } = useTheme()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
   const menuRef = useRef(null)
   const burgerRef = useRef(null)
-
-  useEffect(() => {
-    localStorage.setItem("theme", dark ? "dark" : "light")
-  }, [dark])
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50)
@@ -51,7 +49,7 @@ function NavbarLayout() {
   }, [])
 
   return (
-    <div className={`app-shell ${dark ? "dark" : ""}`}>
+    <div className={`app-shell ${isDark ? "dark" : ""}`}>
       <a href="#main-content" className="skip-link">
         Asosiy kontentga o'tish
       </a>
@@ -60,7 +58,9 @@ function NavbarLayout() {
         <div className="nav-div1">
           <img className="nav-logo" src={BookSvg} alt="" />
           <Link to="/" className="nav-brand">
-            <h1>Eldorbek <span>Yulchiyev</span></h1>
+            <h1>
+              Eldorbek <span>Yulchiyev</span>
+            </h1>
           </Link>
         </div>
 
@@ -90,24 +90,13 @@ function NavbarLayout() {
           ))}
 
           <li className="mobile-theme">
-            <button
-              onClick={() => setDark(!dark)}
-              className="dark-btn mobile-dark-btn"
-              aria-label={dark ? "Yorug' rejim" : "Qorong'u rejim"}
-            >
-              <img src={dark ? SunSvg : MoonSvg} alt="" />
-              {dark ? "Yorug' rejim" : "Qorong'u rejim"}
-            </button>
+            <ThemeToggle variant="mobile" />
           </li>
         </ul>
 
-        <button
-          onClick={() => setDark(!dark)}
-          className="dark-btn desktop-dark-btn"
-          aria-label={dark ? "Yorug' rejim" : "Qorong'u rejim"}
-        >
-          <img className={dark ? "sun-svg" : "moon-svg"} src={dark ? SunSvg : MoonSvg} alt="" />
-        </button>
+        <div className="nav-actions">
+          <ThemeToggle variant="desktop" />
+        </div>
       </nav>
 
       <main id="main-content">
